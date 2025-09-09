@@ -1,0 +1,58 @@
+
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <link rel="icon" type="image/svg+xml" href="/vite.svg" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>CABANA Creator Platform</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+      body {
+        scrollbar-width: none; /* Firefox */
+        -ms-overflow-style: none;  /* IE and Edge */
+      }
+      body::-webkit-scrollbar {
+        display: none; /* Chrome, Safari, and Opera */
+      }
+      .iridescent-text {
+          background-image: linear-gradient(to right, #8A2BE2, #4158D0, #C850C0, #FFCC70);
+          -webkit-background-clip: text;
+          -webkit-text-fill-color: transparent;
+          animation: iridescent-flow 10s ease-in-out infinite;
+          background-size: 200% auto;
+      }
+      
+      @keyframes iridescent-flow {
+          0% { background-position: 0% 50%; }
+          50% { background-position: 100% 50%; }
+          100% { background-position: 0% 50%; }
+      }
+      
+      .bg-dots-pattern {
+          background-color: #0A0A0A;
+          background-image: radial-gradient(circle at 1px 1px, rgba(255,255,255,0.1) 1px, transparent 0);
+          background-size: 2rem 2rem;
+      }
+
+      .iridescent-bg {
+           background-image: linear-gradient(to right, #8A2BE2, #4158D0, #C850C0, #FFCC70);
+           background-size: 200% auto;
+      }
+    </style>
+  <script type="importmap">
+{
+  "imports": {
+    "@google/genai": "https://aistudiocdn.com/@google/genai@^1.16.0",
+    "react-dom/": "https://aistudiocdn.com/react-dom@^19.1.1/",
+    "react/": "https://aistudiocdn.com/react@^19.1.1/",
+    "react": "https://aistudiocdn.com/react@^19.1.1"
+  }
+}
+</script>
+</head>
+  <body>
+    <div id="root"></div>
+    <script type="module" src="/index.tsx"></script>
+  </body>
+</html>
