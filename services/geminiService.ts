@@ -1,20 +1,23 @@
 import { GoogleGenAI } from "@google/genai";
 
-if (!process.env.API_KEY) {
-    console.warn("API_KEY environment variable not set. AI features will not work.");
+// Prefer GEMINI_API_KEY for clarity; fall back to API_KEY for compatibility
+const apiKey = (process.env.GEMINI_API_KEY || process.env.API_KEY || '').trim();
+
+if (!apiKey) {
+    console.warn("GEMINI_API_KEY is not set. AI features will be disabled.");
 }
 
-const ai = new GoogleGenAI({ apiKey: process.env.API_KEY! });
+// Instantiate client only when a key exists to avoid runtime errors in dev
+const ai = apiKey ? new GoogleGenAI({ apiKey }) : null;
 
 export const generateGeminiContent = async (prompt: string): Promise<string> => {
-    if (!process.env.API_KEY) {
-        return "Error: API key is not configured.";
+    if (!apiKey || !ai) {
+        return "Error: AI is not configured (missing GEMINI_API_KEY).";
     }
 
     try {
         const response = await ai.models.generateContent({
             model: 'gemini-2.5-flash',
-            // FIX: Simplified `contents` to a string for single-turn requests.
             contents: prompt,
         });
 
